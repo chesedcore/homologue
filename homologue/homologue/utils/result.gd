@@ -78,6 +78,17 @@ func unwrap_or(default: T) -> T {
 	return default
 }
 
+func expect_enum(err_enum: Dictionary) -> T {
+	if self.is_ok() {
+		return _ok_value
+	}
+	
+	var msg: String = err_enum.find_key(_error_value)
+	print_stack()
+	assert(false, "Panic! "+msg)
+	return _ok_value
+}
+
 func unwrap_unchecked() -> T {
 	return _ok_value
 }
